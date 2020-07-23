@@ -4,7 +4,7 @@ defmodule LiscCypher.Repo.Migrations.CreateNote do
   def change do
     create table(:note) do
       add :title, :string
-      add :body, :string
+      add :body, :text
 
       timestamps()
     end
