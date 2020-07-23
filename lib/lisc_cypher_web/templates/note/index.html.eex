@@ -1,0 +1,28 @@
+<h1>Listing Note</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Body</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for note <- @note do %>
+    <tr>
+      <td><%= note.title %></td>
+      <td><%= note.body %></td>
+
+      <td>
+        <span><%= link "Show", to: Routes.note_path(@conn, :show, note) %></span>
+        <span><%= link "Edit", to: Routes.note_path(@conn, :edit, note) %></span>
+        <span><%= link "Delete", to: Routes.note_path(@conn, :delete, note), method: :delete, data: [confirm: "Are you sure?"] %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Note", to: Routes.note_path(@conn, :new) %></span>
