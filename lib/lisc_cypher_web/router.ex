@@ -16,8 +16,8 @@ defmodule LiscCypherWeb.Router do
   scope "/", LiscCypherWeb do
     pipe_through :browser
 
-    get "/", PageController, :index
-    resources "/note", NoteController
+    # get "/", PageController, :index
+    resources "/", NoteController
   end
 
   # Other scopes may use custom stacks.
