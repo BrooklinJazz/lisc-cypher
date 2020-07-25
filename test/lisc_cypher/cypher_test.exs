@@ -1,10 +1,23 @@
 defmodule LiscCypher.CypherTest do
   use LiscCypher.DataCase
 
-  alias LiscCypher.Cypher
+
+  describe "translate note" do
+    import  LiscCypher.Cypher.Translator
+    test "translate_word" do
+      alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+      assert translate_word(alphabet) == "LBKDSMREAIKsIFVORAGSTYNPsKUZ"
+    end
+    test "translate sentence" do
+      alphabet = "ABCD EFGHIJKLMNOPQRSTUVWX YZ"
+      # it's adding a space TODO fix
+      assert translate_sentence(alphabet) == " LBKD SMREAIKsIFVORAGSTYNPsK UZ"
+    end
+  end
 
   describe "note" do
     alias LiscCypher.Cypher.Note
+    alias LiscCypher.Cypher
 
     @valid_attrs %{body: "some body", title: "some title"}
     @update_attrs %{body: "some updated body", title: "some updated title"}

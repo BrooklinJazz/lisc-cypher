@@ -12,6 +12,11 @@
     <%= @note.body %>
   </li>
 
+  <li>
+    <strong>Translated:</strong>
+    <%= translate_sentence(@note.body) %>
+  </li>
+
 </ul>
 
 <span><%= link "Edit", to: Routes.note_path(@conn, :edit, @note) %></span>

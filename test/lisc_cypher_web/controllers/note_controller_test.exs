@@ -1,5 +1,6 @@
 defmodule LiscCypherWeb.NoteControllerTest do
   use LiscCypherWeb.ConnCase
+  import LiscCypherWeb.NoteView
 
   alias LiscCypher.Cypher
 
