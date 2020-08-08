@@ -16,6 +16,8 @@ defmodule LiscCypherWeb.NoteController do
   end
 
   def create(conn, %{"note" => note_params}) do
+    user_id = conn.assigns[:current_user].id
+    note_params = Map.merge(note_params, %{"user_id" => user_id})
     case Translations.create_note(note_params) do
       {:ok, note} ->
         conn

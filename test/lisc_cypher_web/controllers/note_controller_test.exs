@@ -41,8 +41,8 @@ defmodule LiscCypherWeb.NoteControllerTest do
   end
 
   describe "create note" do
-    test "redirects to show when data is valid", %{conn: conn, user: user, note: note} do
-      conn = conn |> log_in_user(user) |> post(Routes.note_path(conn, :create), note: Map.merge(%{user_id: user.id}, @create_attrs))
+    test "redirects to show when data is valid", %{conn: conn, user: user} do
+      conn = conn |> log_in_user(user) |> post(Routes.note_path(conn, :create), note: @create_attrs)
 
       assert %{id: id} = redirected_params(conn)
       assert redirected_to(conn) == Routes.note_path(conn, :show, id)
