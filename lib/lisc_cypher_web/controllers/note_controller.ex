@@ -40,7 +40,6 @@ defmodule LiscCypherWeb.NoteController do
 
   def update(conn, %{"id" => id, "note" => note_params}) do
     note = Translations.get_note!(id)
-
     case Translations.update_note(note, note_params) do
       {:ok, note} ->
         conn

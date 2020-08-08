@@ -15,6 +15,6 @@ defmodule LiscCypher.Translations.Note do
     note
     |> cast(attrs, [:title, :body, :user_id])
     |> foreign_key_constraint(:user_id)
-    |> validate_required([:title, :body])
+    |> validate_required([:title, :body, :user_id])
   end
 end
