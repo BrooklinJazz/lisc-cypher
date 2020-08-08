@@ -80,7 +80,6 @@ defmodule LiscCypher.TranslationsTest do
 
   describe "languages" do
     alias LiscCypher.Translations.Language
-
     @valid_attrs %{char_map: %{}, description: "some description", title: "some title", word_map: %{}}
     @update_attrs %{char_map: %{}, description: "some updated description", title: "some updated title", word_map: %{}}
     @invalid_attrs %{char_map: nil, description: nil, title: nil, word_map: nil}

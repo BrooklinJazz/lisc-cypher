@@ -1,6 +1,6 @@
 defmodule LiscCypherWeb.LanguageControllerTest do
   use LiscCypherWeb.ConnCase
-
+  import LiscCypher.AccountsFixtures
   alias LiscCypher.Translations
 
   @create_attrs %{char_map: %{}, description: "some description", title: "some title", word_map: %{}}
@@ -10,6 +10,12 @@ defmodule LiscCypherWeb.LanguageControllerTest do
   def fixture(:language) do
     {:ok, language} = Translations.create_language(@create_attrs)
     language
+  end
+
+  setup %{conn: conn} do
+    user = user_fixture()
+    conn = conn |> log_in_user(user)
+    %{user: user, conn: conn}
   end
 
   describe "index" do
