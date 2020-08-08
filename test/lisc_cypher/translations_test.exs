@@ -80,8 +80,8 @@ defmodule LiscCypher.TranslationsTest do
 
   describe "languages" do
     alias LiscCypher.Translations.Language
-    @valid_attrs %{char_map: %{}, description: "some description", title: "some title", word_map: %{}}
-    @update_attrs %{char_map: %{}, description: "some updated description", title: "some updated title", word_map: %{}}
+    @valid_attrs %{char_map: %{"A" => "B"}, description: "some description", title: "some title", word_map: %{"WORD" => "DROW"}}
+    @update_attrs %{char_map: %{"U" => "P"}, description: "some updated description", title: "some updated title", word_map: %{"UPDATE" => "UPDATED"}}
     @invalid_attrs %{char_map: nil, description: nil, title: nil, word_map: nil}
 
     def language_fixture(attrs \\ %{}) do
@@ -105,10 +105,10 @@ defmodule LiscCypher.TranslationsTest do
 
     test "create_language/1 with valid data creates a language" do
       assert {:ok, %Language{} = language} = Translations.create_language(@valid_attrs)
-      assert language.char_map == %{}
+      assert language.char_map == %{"A" => "B"}
       assert language.description == "some description"
       assert language.title == "some title"
-      assert language.word_map == %{}
+      assert language.word_map == %{"WORD" => "DROW"}
     end
 
     test "create_language/1 with invalid data returns error changeset" do
@@ -118,10 +118,10 @@ defmodule LiscCypher.TranslationsTest do
     test "update_language/2 with valid data updates the language" do
       language = language_fixture()
       assert {:ok, %Language{} = language} = Translations.update_language(language, @update_attrs)
-      assert language.char_map == %{}
+      assert language.char_map == %{"U" => "P"}
       assert language.description == "some updated description"
       assert language.title == "some updated title"
-      assert language.word_map == %{}
+      assert language.word_map == %{"UPDATE" => "UPDATED"}
     end
 
     test "update_language/2 with invalid data returns error changeset" do
