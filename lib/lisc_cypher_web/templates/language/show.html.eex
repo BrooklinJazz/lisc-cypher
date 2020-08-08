@@ -14,12 +14,12 @@
 
   <li>
     <strong>Word map:</strong>
-    <%= @language.word_map %>
+    <%# @language.word_map %>
   </li>
 
   <li>
     <strong>Char map:</strong>
-    <%= @language.char_map %>
+    <%# @language.char_map %>
   </li>
 
 </ul>

@@ -13,13 +13,13 @@
   <%= textarea f, :description %>
   <%= error_tag f, :description %>
 
-  <%= label f, :word_map %>
-  <%= text_input f, :word_map %>
-  <%= error_tag f, :word_map %>
+  <%# label f, :word_map %>
+  <%# text_input f, :word_map %>
+  <%# error_tag f, :word_map %>
 
-  <%= label f, :char_map %>
-  <%= text_input f, :char_map %>
-  <%= error_tag f, :char_map %>
+  <%# label f, :char_map %>
+  <%# text_input f, :char_map %>
+  <%# error_tag f, :char_map %>
 
   <div>
     <%= submit "Save" %>
