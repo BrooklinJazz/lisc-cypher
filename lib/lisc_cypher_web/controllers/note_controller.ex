@@ -5,7 +5,8 @@ defmodule LiscCypherWeb.NoteController do
   alias LiscCypher.Translations.Note
 
   def index(conn, _params) do
-    notes = Translations.list_notes()
+    user_id = conn.assigns[:current_user].id
+    notes = Translations.list_notes(user_id)
     render(conn, "index.html", notes: notes)
   end
 

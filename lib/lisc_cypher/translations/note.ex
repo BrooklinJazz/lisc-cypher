@@ -13,7 +13,8 @@ defmodule LiscCypher.Translations.Note do
   @doc false
   def changeset(note, attrs) do
     note
-    |> cast(attrs, [:title, :body])
+    |> cast(attrs, [:title, :body, :user_id])
+    |> foreign_key_constraint(:user_id)
     |> validate_required([:title, :body])
   end
 end

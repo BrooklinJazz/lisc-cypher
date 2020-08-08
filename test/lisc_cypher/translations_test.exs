@@ -2,6 +2,7 @@ defmodule LiscCypher.TranslationsTest do
   use LiscCypher.DataCase
 
   alias LiscCypher.Translations
+  import LiscCypher.AccountsFixtures
 
   describe "notes" do
     alias LiscCypher.Translations.Note
@@ -9,6 +10,12 @@ defmodule LiscCypher.TranslationsTest do
     @valid_attrs %{body: "some body", title: "some title"}
     @update_attrs %{body: "some updated body", title: "some updated title"}
     @invalid_attrs %{body: nil, title: nil}
+
+    setup do
+      user = user_fixture()
+      note = note_fixture(%{user_id: user.id})
+      %{user: user, note: note}
+    end
 
     def note_fixture(attrs \\ %{}) do
       {:ok, note} =
@@ -19,20 +26,24 @@ defmodule LiscCypher.TranslationsTest do
       note
     end
 
-    test "list_notes/0 returns all notes" do
-      note = note_fixture()
-      assert Translations.list_notes() == [note]
+    test "list_notes/1 _ no user or invalid id _ returns no notes", %{note: note, user: user} do
+      assert Translations.list_notes(0) == []
     end
 
-    test "get_note!/1 returns the note with given id" do
-      note = note_fixture()
+    test "list_notes/1 _ with user _ returns user notes", %{note: note, user: user} do
+      assert Translations.list_notes(user.id) == [note]
+    end
+
+    test "get_note!/1 returns the note with given id", %{note: note, user: user} do
       assert Translations.get_note!(note.id) == note
     end
 
     test "create_note/1 with valid data creates a note" do
-      assert {:ok, %Note{} = note} = Translations.create_note(@valid_attrs)
+      %{id: id} = user = user_fixture()
+      note = note_fixture(%{user_id: id})
       assert note.body == "some body"
       assert note.title == "some title"
+      assert note.user_id == id
     end
 
     test "create_note/1 with invalid data returns error changeset" do

@@ -17,8 +17,8 @@ defmodule LiscCypher.Translations do
       [%Note{}, ...]
 
   """
-  def list_notes do
-    Repo.all(Note)
+  def list_notes(user_id) do
+    Repo.all(from n in Note, where: n.user_id == ^user_id)
   end
 
   @doc """
