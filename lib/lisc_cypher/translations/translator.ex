@@ -6,7 +6,7 @@ defmodule LiscCypher.Cypher.Translator do
     |> String.split(" ")
     |> List.foldl("", fn x, acc -> acc <> " " <> translate_word(x) end)
   end
-
+P
   def translate_word(word) do
     word
     |> String.split("", trim: true)
