@@ -1,0 +1,28 @@
+<h1>Show Language</h1>
+
+<ul>
+
+  <li>
+    <strong>Title:</strong>
+    <%= @language.title %>
+  </li>
+
+  <li>
+    <strong>Description:</strong>
+    <%= @language.description %>
+  </li>
+
+  <li>
+    <strong>Word map:</strong>
+    <%= @language.word_map %>
+  </li>
+
+  <li>
+    <strong>Char map:</strong>
+    <%= @language.char_map %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.language_path(@conn, :edit, @language) %></span>
+<span><%= link "Back", to: Routes.language_path(@conn, :index) %></span>

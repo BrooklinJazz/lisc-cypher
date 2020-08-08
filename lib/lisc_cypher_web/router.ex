@@ -18,6 +18,7 @@ defmodule LiscCypherWeb.Router do
 
   scope "/", LiscCypherWeb do
     pipe_through [:browser, :require_authenticated_user]
+    resources "/languages", LanguageController
     resources "/", NoteController
   end
 

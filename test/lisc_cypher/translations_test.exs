@@ -77,4 +77,69 @@ defmodule LiscCypher.TranslationsTest do
       assert %Ecto.Changeset{} = Translations.change_note(note)
     end
   end
+
+  describe "languages" do
+    alias LiscCypher.Translations.Language
+
+    @valid_attrs %{char_map: %{}, description: "some description", title: "some title", word_map: %{}}
+    @update_attrs %{char_map: %{}, description: "some updated description", title: "some updated title", word_map: %{}}
+    @invalid_attrs %{char_map: nil, description: nil, title: nil, word_map: nil}
+
+    def language_fixture(attrs \\ %{}) do
+      {:ok, language} =
+        attrs
+        |> Enum.into(@valid_attrs)
+        |> Translations.create_language()
+
+      language
+    end
+
+    test "list_languages/0 returns all languages" do
+      language = language_fixture()
+      assert Translations.list_languages() == [language]
+    end
+
+    test "get_language!/1 returns the language with given id" do
+      language = language_fixture()
+      assert Translations.get_language!(language.id) == language
+    end
+
+    test "create_language/1 with valid data creates a language" do
+      assert {:ok, %Language{} = language} = Translations.create_language(@valid_attrs)
+      assert language.char_map == %{}
+      assert language.description == "some description"
+      assert language.title == "some title"
+      assert language.word_map == %{}
+    end
+
+    test "create_language/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Translations.create_language(@invalid_attrs)
+    end
+
+    test "update_language/2 with valid data updates the language" do
+      language = language_fixture()
+      assert {:ok, %Language{} = language} = Translations.update_language(language, @update_attrs)
+      assert language.char_map == %{}
+      assert language.description == "some updated description"
+      assert language.title == "some updated title"
+      assert language.word_map == %{}
+    end
+
+    test "update_language/2 with invalid data returns error changeset" do
+      language = language_fixture()
+      assert {:error, %Ecto.Changeset{}} = Translations.update_language(language, @invalid_attrs)
+      assert language == Translations.get_language!(language.id)
+    end
+
+    test "delete_language/1 deletes the language" do
+      language = language_fixture()
+      assert {:ok, %Language{}} = Translations.delete_language(language)
+      assert_raise Ecto.NoResultsError, fn -> Translations.get_language!(language.id) end
+    end
+
+    test "change_language/1 returns a language changeset" do
+      language = language_fixture()
+      assert %Ecto.Changeset{} = Translations.change_language(language)
+    end
+  end
 end
