@@ -18,7 +18,6 @@ defmodule LiscCypherWeb.Router do
 
   scope "/", LiscCypherWeb do
     pipe_through [:browser, :require_authenticated_user]
-    # get "/", PageController, :index
     resources "/", NoteController
   end
 
