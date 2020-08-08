@@ -1,4 +1,4 @@
-<h1>Listing Note</h1>
+<h1>Listing Notes</h1>
 
 <table>
   <thead>
@@ -10,7 +10,7 @@
     </tr>
   </thead>
   <tbody>
-<%= for note <- @note do %>
+<%= for note <- @notes do %>
     <tr>
       <td><%= note.title %></td>
       <td><%= note.body %></td>
